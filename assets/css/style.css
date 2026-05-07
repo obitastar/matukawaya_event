@@ -1643,31 +1643,65 @@ section h2 {
 
 .highlight-card {
   padding: 40px 32px;
-  border: 1px solid var(--color-border-dark);
+  border: 1px solid rgba(184, 149, 106, 0.2);
+  background: linear-gradient(145deg, rgba(26, 24, 21, 0.9) 0%, rgba(15, 14, 12, 0.95) 100%);
   transition: border-color 0.5s ease, transform 0.5s ease, box-shadow 0.5s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.highlight-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(184, 149, 106, 0.4) 0%, transparent 40%, transparent 60%, rgba(184, 149, 106, 0.2) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.highlight-card:hover::before {
+  opacity: 1;
 }
 
 .highlight-card:hover {
   border-color: var(--color-gold);
-  transform: translateY(-4px);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+  transform: translateY(-6px);
+  box-shadow:
+    0 4px 24px rgba(184, 149, 106, 0.15),
+    0 16px 48px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(184, 149, 106, 0.1);
 }
 
 .highlight-card__number {
   display: block;
   font-family: var(--font-serif-en);
-  font-size: 48px;
+  font-size: 56px;
   font-weight: 300;
   font-style: italic;
   line-height: 1;
-  color: var(--color-gold);
-  margin-bottom: 12px;
-  opacity: 0.7;
+  background: linear-gradient(135deg, #D4A853 0%, #B8956A 50%, #E8C97A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 16px;
+  opacity: 0.85;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.highlight-card:hover .highlight-card__number {
+  opacity: 1;
+  transform: translateX(4px);
 }
 
 @media (min-width: 1024px) {
   .highlight-card__number {
-    font-size: 64px;
+    font-size: 72px;
   }
 }
 
@@ -1675,12 +1709,17 @@ section h2 {
   font-family: var(--font-mincho);
   font-size: 18px;
   font-weight: 500;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   margin-bottom: 16px;
   padding-bottom: 16px;
   color: var(--color-text-light);
-  border-bottom: 1px solid var(--color-gold);
+  border-bottom: 1px solid rgba(184, 149, 106, 0.35);
   display: inline-block;
+  transition: color 0.4s ease;
+}
+
+.highlight-card:hover .highlight-card__title {
+  color: #ffffff;
 }
 
 @media (min-width: 1024px) {
@@ -1693,76 +1732,15 @@ section h2 {
   font-size: 14px;
   line-height: 1.9;
   color: var(--color-text-mute);
+  transition: color 0.4s ease;
 }
 
-/* 背景画像付きカード */
-.highlight-card--bg {
-  position: relative;
-  overflow: hidden;
-  background-size: cover;
-  background-position: center;
-  border-color: rgba(184, 149, 106, 0.15);
-  min-height: 280px;
-  display: flex;
-  align-items: flex-end;
-  padding: 0;
-}
-
-.highlight-card--bg:hover {
-  border-color: var(--color-gold);
-}
-
-/* ホバーで背景画像がゆっくりズーム */
-.highlight-card--bg::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: inherit;
-  background-size: cover;
-  background-position: center;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 0;
-}
-
-.highlight-card--bg:hover::before {
-  transform: scale(1.06);
-}
-
-.highlight-card__overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(
-    to top,
-    rgba(15, 14, 12, 0.95) 0%,
-    rgba(15, 14, 12, 0.65) 45%,
-    rgba(15, 14, 12, 0.2) 100%
-  );
-  transition: background 0.5s ease;
-}
-
-.highlight-card--bg:hover .highlight-card__overlay {
-  background: linear-gradient(
-    to top,
-    rgba(15, 14, 12, 0.9) 0%,
-    rgba(15, 14, 12, 0.45) 45%,
-    rgba(15, 14, 12, 0.1) 100%
-  );
-}
-
-.highlight-card__content {
-  position: relative;
-  z-index: 2;
-  padding: 40px 32px;
-  width: 100%;
+.highlight-card:hover .highlight-card__copy {
+  color: var(--color-text-light);
 }
 
 @media (min-width: 1024px) {
-  .highlight-card--bg {
-    min-height: 340px;
-  }
-
-  .highlight-card__content {
+  .highlight-card {
     padding: 48px 40px;
   }
 }
