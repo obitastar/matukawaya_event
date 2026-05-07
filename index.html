@@ -482,7 +482,8 @@
     <p class="form-lead fade-in">ご予約優先でご案内いたします。<br>お電話でもお受けしています。</p>
 
     <!-- フォーム送信処理: 最終的な送信先は別途決定。Formrun/Googleフォーム/独自エンドポイント等を検討 -->
-    <form class="reservation-form fade-in" action="https://formsubmit.co/ajax/order@matukawaya.com" method="POST">
+    <!-- PHP設置後、action のURLをサーバーのパスに差し替え（例: https://www.matukawaya.com/api/send-reservation.php） -->
+    <form class="reservation-form fade-in" action="api/send-reservation.php" method="POST">
 
       <div class="form-group">
         <label for="form-name" class="form-label">お名前<span class="form-required">必須</span></label>
@@ -558,9 +559,6 @@
         </label>
       </div>
 
-      <input type="hidden" name="_subject" value="【来場予約】御福まつかわや 着物展示会">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_captcha" value="false">
       <button type="submit" class="cta-button form-submit" data-event="reservation_submit" disabled>予約を送信する</button>
     </form>
 

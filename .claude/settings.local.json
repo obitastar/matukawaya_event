@@ -8,7 +8,8 @@
       "Bash(cd \"/c/Users/kimono/Desktop/呉服祭イベント\" && gh auth status 2>&1)",
       "Bash(cd \"/c/Users/kimono/Desktop/呉服祭イベント\" && gh auth login -p https -w 2>&1)",
       "WebFetch(domain:www.matukawaya.com)",
-      "Bash(cd \"/c/Users/kimono/Desktop/呉服祭イベント\" && ls assets/img/*.jpg)"
+      "Bash(cd \"/c/Users/kimono/Desktop/呉服祭イベント\" && ls assets/img/*.jpg)",
+      "Bash(where npx:*)"
     ]
   }
 }

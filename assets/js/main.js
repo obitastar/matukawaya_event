@@ -359,7 +359,7 @@
         submitBtn.disabled = true;
       }
 
-      // FormSubmit.co へ AJAX 送信
+      // PHP へ AJAX 送信
       var formData = new FormData(form);
       fetch(form.action, {
         method: 'POST',
@@ -367,22 +367,23 @@
         body: formData
       })
       .then(function (response) {
-        return response.json();
+        return response.json().then(function (data) {
+          data._status = response.ok;
+          return data;
+        });
       })
       .then(function (data) {
-        if (data.success) {
-          // 送信成功
+        if (data._status && data.success) {
           if (submitBtn) submitBtn.textContent = '送信しました';
           form.reset();
           if (submitBtn) submitBtn.disabled = true;
         } else {
-          throw new Error('送信に失敗しました');
+          throw new Error(data.message || '送信に失敗しました');
         }
       })
-      .catch(function () {
-        // 送信失敗
+      .catch(function (err) {
         if (submitBtn) {
-          submitBtn.textContent = '送信に失敗しました';
+          submitBtn.textContent = err.message || '送信に失敗しました';
           setTimeout(function () {
             submitBtn.textContent = '予約を送信する';
             if (privacyCheckbox) {
