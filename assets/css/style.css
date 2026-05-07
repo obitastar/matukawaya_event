@@ -1684,6 +1684,14 @@ section h2 {
   letter-spacing: 0.1em;
 }
 
+.brands-note {
+  margin-top: 40px;
+  font-size: 13px;
+  color: var(--color-text-mute);
+  text-align: center;
+  line-height: 1.8;
+}
+
 /* ------------------------------------------------------------
    13. SECTION 07 - 会場
    ------------------------------------------------------------ */
