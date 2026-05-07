@@ -412,22 +412,22 @@
 
     if (!intro) return;
 
-    // ロゴ + ライン + タグライン表示後、3.5秒でイントロをフェードアウト
+    // ロゴ + ライン + タグライン表示後、3秒でイントロをフェードアウト
     setTimeout(function () {
       intro.classList.add('fv-intro--fade-out');
 
-      // 背景画像をゆっくりリビール
+      // 背景画像を劇的にリビール
       if (fvBg) fvBg.classList.add('fv-bg--reveal');
 
-      // イントロフェード完了後にコンテンツを順次表示（映画的なタイミング）
+      // コンテンツを映画的に順次表示（間隔を広めに）
       setTimeout(function () {
         fvAnims.forEach(function (el, i) {
           setTimeout(function () {
             el.classList.add('fv-anim--visible');
-          }, i * 250);
+          }, i * 350);
         });
-      }, 900);
-    }, 3500);
+      }, 1200);
+    }, 3000);
   }
 
   // =========================================================
