@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd \"/c/Users/kimono/Desktop/呉服祭イベント\" && gh api repos/obitastar/matukawaya_event/pages -X POST -f build_type=workflow -f source.branch=main -f source.path=/ 2>&1 || gh api repos/obitastar/matukawaya_event/pages -X PUT -f build_type=legacy -f source.branch=main -f source.path=/ 2>&1)",
+      "Bash(cd \"/c/Users/kimono/Desktop/呉服祭イベント\" && mv matukawaya-event/index.html . && mv matukawaya-event/assets . && mv matukawaya-event/README.md .)",
+      "Bash(cd \"/c/Users/kimono/Desktop/呉服祭イベント\" && cp -r matukawaya-event/assets . && rm -rf matukawaya-event/assets)",
+      "Bash(cd \"/c/Users/kimono/Desktop/呉服祭イベント\" && mkdir -p _source && mv image _source/ && mv kikaku.txt _source/ && mv matukawaya_lp_prompt_v2.md _source/ && rm -rf matukawaya-event)"
+    ]
+  }
+}
