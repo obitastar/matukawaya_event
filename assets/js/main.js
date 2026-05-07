@@ -547,7 +547,68 @@
     initBackToTop();
     initVenueGallery();
     initNishiharaGallery();
+    initBrandsSlider();
   });
+
+  function initBrandsSlider() {
+    var track = document.getElementById('brands-slider-track');
+    var prevBtn = document.getElementById('brands-prev');
+    var nextBtn = document.getElementById('brands-next');
+    var counter = document.getElementById('brands-counter');
+    if (!track || !prevBtn || !nextBtn) return;
+
+    var cards = track.querySelectorAll('.brand-card');
+    var total = cards.length;
+    var current = 0;
+
+    function getVisible() {
+      var w = window.innerWidth;
+      if (w >= 1024) return 3;
+      if (w >= 768) return 2;
+      return 1;
+    }
+
+    function getMaxIndex() {
+      return Math.max(0, total - getVisible());
+    }
+
+    function update() {
+      var visible = getVisible();
+      var pct = (current * (100 / visible));
+      track.style.transform = 'translateX(-' + pct + '%)';
+      if (counter) counter.textContent = (current + 1) + ' / ' + (getMaxIndex() + 1);
+    }
+
+    prevBtn.addEventListener('click', function () {
+      current = Math.max(0, current - 1);
+      update();
+    });
+
+    nextBtn.addEventListener('click', function () {
+      current = Math.min(getMaxIndex(), current + 1);
+      update();
+    });
+
+    window.addEventListener('resize', function () {
+      if (current > getMaxIndex()) current = getMaxIndex();
+      update();
+    });
+
+    // タッチスワイプ
+    var startX = 0, diff = 0;
+    track.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; });
+    track.addEventListener('touchmove', function (e) { diff = e.touches[0].clientX - startX; });
+    track.addEventListener('touchend', function () {
+      if (Math.abs(diff) > 50) {
+        if (diff < 0) current = Math.min(getMaxIndex(), current + 1);
+        else current = Math.max(0, current - 1);
+        update();
+      }
+      diff = 0;
+    });
+
+    update();
+  }
 
   function initNishiharaGallery() {
     var track = document.getElementById('nishihara-gallery-track');
