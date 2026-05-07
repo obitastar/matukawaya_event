@@ -9,7 +9,8 @@
       "Bash(cd \"/c/Users/kimono/Desktop/呉服祭イベント\" && gh auth login -p https -w 2>&1)",
       "WebFetch(domain:www.matukawaya.com)",
       "Bash(cd \"/c/Users/kimono/Desktop/呉服祭イベント\" && ls assets/img/*.jpg)",
-      "Bash(where npx:*)"
+      "Bash(where npx:*)",
+      "Bash(cd \"C:/Users/kimono/Desktop/呉服祭イベント/assets/img/nishihara/\" && mv \"171A9953-scaled.jpg\" \"nishihara_01.jpg\" && mv \"image013-5.jpg\" \"nishihara_02.jpg\" && mv \"image017-3-1536x1152.jpg\" \"nishihara_03.jpg\" && mv \"image021-4-1536x2048.jpg\" \"nishihara_04.jpg\" && mv \"image033-3.jpg\" \"nishihara_05.jpg\" && mv \"image035-2-1523x2048.jpg\" \"nishihara_06.jpg\" && mv \"image037-3.jpg\" \"nishihara_07.jpg\" && mv \"image041-2.jpg\" \"nishihara_08.jpg\" && mv \"image043-2.jpg\" \"nishihara_09.jpg\")"
     ]
   }
 }
