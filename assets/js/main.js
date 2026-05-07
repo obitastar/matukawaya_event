@@ -349,25 +349,46 @@
         timestamp: new Date().toISOString()
       });
 
-      // フォーム送信先は別途決定
-      // 実際の送信処理（fetch / XMLHttpRequest 等）はここに実装する
-
-      // 送信成功時の仮のUI挙動
+      // 送信中のUI
       if (submitBtn) {
-        var originalText = submitBtn.textContent;
-        submitBtn.textContent = '送信しました';
+        submitBtn.textContent = '送信中...';
         submitBtn.disabled = true;
-
-        setTimeout(function () {
-          submitBtn.textContent = originalText;
-          // プライバシーチェックボックスの状態に応じて disabled を復帰
-          if (privacyCheckbox) {
-            submitBtn.disabled = !privacyCheckbox.checked;
-          } else {
-            submitBtn.disabled = false;
-          }
-        }, 3000);
       }
+
+      // FormSubmit.co へ AJAX 送信
+      var formData = new FormData(form);
+      fetch(form.action, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: formData
+      })
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        if (data.success) {
+          // 送信成功
+          if (submitBtn) submitBtn.textContent = '送信しました';
+          form.reset();
+          if (submitBtn) submitBtn.disabled = true;
+        } else {
+          throw new Error('送信に失敗しました');
+        }
+      })
+      .catch(function () {
+        // 送信失敗
+        if (submitBtn) {
+          submitBtn.textContent = '送信に失敗しました';
+          setTimeout(function () {
+            submitBtn.textContent = '予約を送信する';
+            if (privacyCheckbox) {
+              submitBtn.disabled = !privacyCheckbox.checked;
+            } else {
+              submitBtn.disabled = false;
+            }
+          }, 3000);
+        }
+      });
     });
   }
 
