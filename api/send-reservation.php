@@ -1,8 +1,14 @@
 <?php
 /**
  * 来場予約フォーム送信処理
- * 設置先サーバーで mail() が使える前提
+ * PHPMailer で SMTP(SSL/465) 経由送信
  */
+
+require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/config.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 // 許可するオリジン（公開後のURLに差し替え）
 $allowed_origins = [
@@ -65,7 +71,7 @@ if (!preg_match('/^[0-9\-]+$/', $tel)) {
     exit;
 }
 
-// メールアドレスの形式チェック（入力が��る場合のみ）
+// メールアドレスの形式チェック（入力がある場合のみ）
 if ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
     http_response_code(400);
     echo json_encode(['success' => false, 'message' => 'メールアドレスの形式が不正です']);
@@ -100,22 +106,39 @@ $body = <<<EOT
 　{$message}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━
-送信日時: EOT;
-$body .= date('Y-m-d H:i:s');
+EOT;
+$body .= "\n送信日時: " . date('Y-m-d H:i:s');
 
-// --- メール送信 ---
-$headers = [
-    'From: noreply@matukawaya.com',
-    'Reply-To: ' . ($email !== '' ? $email : 'noreply@matukawaya.com'),
-    'Content-Type: text/plain; charset=UTF-8',
-    'X-Mailer: PHP/' . phpversion(),
-];
+// --- PHPMailer で SMTP 送信 ---
+$mail = new PHPMailer(true);
 
-$result = mb_send_mail($to, $subject, $body, implode("\r\n", $headers));
+try {
+    $mail->isSMTP();
+    $mail->Host       = SMTP_HOST;
+    $mail->SMTPAuth   = true;
+    $mail->Username   = SMTP_USER;
+    $mail->Password   = SMTP_PASS;
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+    $mail->Port       = SMTP_PORT;
+    $mail->CharSet    = 'UTF-8';
 
-if ($result) {
+    // 送信元
+    $mail->setFrom(SMTP_FROM, SMTP_FROM_NAME);
+
+    // 宛先（運営）
+    $mail->addAddress($to);
+
+    // 返信先（予約者のメールがあればそちらに）
+    if ($email !== '') {
+        $mail->addReplyTo($email, $name);
+    }
+
+    $mail->Subject = $subject;
+    $mail->Body    = $body;
+
+    $mail->send();
     echo json_encode(['success' => true, 'message' => '予約を受け付けました']);
-} else {
+} catch (Exception $e) {
     http_response_code(500);
     echo json_encode(['success' => false, 'message' => '送信に失敗しました。お電話でご連絡ください。']);
 }
