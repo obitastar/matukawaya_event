@@ -546,5 +546,51 @@
     initScrollIndicator();
     initBackToTop();
     initVenueGallery();
+    initNishiharaGallery();
   });
+
+  function initNishiharaGallery() {
+    var track = document.getElementById('nishihara-gallery-track');
+    var prevBtn = document.getElementById('nishihara-prev');
+    var nextBtn = document.getElementById('nishihara-next');
+    var counter = document.getElementById('nishihara-counter');
+    if (!track || !prevBtn || !nextBtn) return;
+
+    var images = track.querySelectorAll('.nishihara-gallery__img');
+    var total = images.length;
+    var current = 0;
+
+    function update() {
+      track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      if (counter) counter.textContent = (current + 1) + ' / ' + total;
+    }
+
+    prevBtn.addEventListener('click', function () {
+      current = (current - 1 + total) % total;
+      update();
+    });
+
+    nextBtn.addEventListener('click', function () {
+      current = (current + 1) % total;
+      update();
+    });
+
+    // タッチスワイプ
+    var startX = 0;
+    var diff = 0;
+    track.addEventListener('touchstart', function (e) {
+      startX = e.touches[0].clientX;
+    });
+    track.addEventListener('touchmove', function (e) {
+      diff = e.touches[0].clientX - startX;
+    });
+    track.addEventListener('touchend', function () {
+      if (Math.abs(diff) > 50) {
+        if (diff < 0) { current = (current + 1) % total; }
+        else { current = (current - 1 + total) % total; }
+        update();
+      }
+      diff = 0;
+    });
+  }
 })();
