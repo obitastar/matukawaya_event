@@ -1622,6 +1622,17 @@ section h2 {
   padding-bottom: 12px;
 }
 
+.brand-card__tag {
+  display: inline-block;
+  font-family: var(--font-gothic);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--color-gold);
+  border: 1px solid var(--color-gold);
+  padding: 2px 10px;
+  margin-bottom: 10px;
+}
+
 .brand-card__name::after {
   content: "";
   position: absolute;
