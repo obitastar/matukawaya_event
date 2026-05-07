@@ -5,13 +5,17 @@
 (function () {
   'use strict';
 
+  console.log('[まつかわや LP] main.js v20260507 loaded');
+
   // =========================================================
   // ユーティリティ
   // =========================================================
 
   /** reduced-motion が有効かどうか */
   function prefersReducedMotion() {
-    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var result = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (result) console.log('[まつかわや LP] reduced-motion が有効です。アニメーションを簡略化します。');
+    return result;
   }
 
   // =========================================================
