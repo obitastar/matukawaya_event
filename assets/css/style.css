@@ -1388,7 +1388,7 @@ section h2 {
 
 @media (min-width: 1024px) {
   .venue-hero {
-    height: 80vh;
+    height: 70vh;
   }
 }
 
@@ -1397,6 +1397,49 @@ section h2 {
   height: 120%;
   object-fit: cover;
   will-change: transform;
+}
+
+/* 会場ギャラリー — 自動横スクロール */
+.venue-gallery {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.venue-gallery__track {
+  display: flex;
+  gap: 12px;
+  height: 100%;
+  animation: gallery-scroll 40s linear infinite;
+  will-change: transform;
+}
+
+.venue-gallery__track:hover {
+  animation-play-state: paused;
+}
+
+.venue-gallery__img {
+  height: 100%;
+  width: auto;
+  min-width: 300px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+@media (min-width: 1024px) {
+  .venue-gallery__img {
+    min-width: 500px;
+  }
+}
+
+@keyframes gallery-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .venue-hero__overlay {
