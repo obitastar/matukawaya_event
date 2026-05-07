@@ -1574,6 +1574,22 @@ section h2 {
   }
 }
 
+.section-brands h2 {
+  font-size: 22px;
+}
+
+@media (min-width: 768px) {
+  .section-brands h2 {
+    font-size: 36px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-brands h2 {
+    font-size: 52px;
+  }
+}
+
 .section-brands__inner {
   max-width: var(--container-max);
   margin-inline: auto;
@@ -1728,6 +1744,22 @@ section h2 {
 .section-venue {
   background-color: var(--color-bg);
   padding-bottom: var(--section-padding-y);
+}
+
+.section-venue h2 {
+  font-size: 20px;
+}
+
+@media (min-width: 768px) {
+  .section-venue h2 {
+    font-size: 36px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-venue h2 {
+    font-size: 52px;
+  }
 }
 
 .venue-hero {
@@ -1901,6 +1933,22 @@ section h2 {
 @media (min-width: 1024px) {
   .section-highlights {
     padding-inline: 40px;
+  }
+}
+
+.section-highlights h2 {
+  font-size: 22px;
+}
+
+@media (min-width: 768px) {
+  .section-highlights h2 {
+    font-size: 36px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-highlights h2 {
+    font-size: 52px;
   }
 }
 
