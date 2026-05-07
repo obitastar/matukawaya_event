@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1200" viewBox="0 0 800 1200">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0F0E0C"/>
+      <stop offset="100%" style="stop-color:#1B3958"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1200" fill="url(#g)"/>
+  <line x1="0" y1="0" x2="800" y2="1200" stroke="#7B9BB8" stroke-width="0.5" opacity="0.15"/>
+  <line x1="800" y1="0" x2="0" y2="1200" stroke="#7B9BB8" stroke-width="0.5" opacity="0.15"/>
+  <rect x="240" y="580" width="320" height="40" rx="4" fill="#0F0E0C" opacity="0.7"/>
+  <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" fill="#7B9BB8" font-family="serif" font-size="32px" opacity="0.7">江戸染浴衣</text>
+</svg>

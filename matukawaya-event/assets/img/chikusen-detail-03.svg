@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0F0E0C"/>
+      <stop offset="100%" style="stop-color:#1B3958"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#g)"/>
+  <line x1="0" y1="0" x2="600" y2="600" stroke="#7B9BB8" stroke-width="0.5" opacity="0.15"/>
+  <line x1="600" y1="0" x2="0" y2="600" stroke="#7B9BB8" stroke-width="0.5" opacity="0.15"/>
+  <rect x="140" y="280" width="320" height="40" rx="4" fill="#0F0E0C" opacity="0.7"/>
+  <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" fill="#7B9BB8" font-family="serif" font-size="22px" opacity="0.7">藍 03</text>
+</svg>
