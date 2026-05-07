@@ -942,6 +942,19 @@ section h2 {
 
 .section-intro h2 {
   color: var(--color-text-dark);
+  font-size: 22px;
+}
+
+@media (min-width: 768px) {
+  .section-intro h2 {
+    font-size: 36px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-intro h2 {
+    font-size: 52px;
+  }
 }
 
 .intro-body {
@@ -967,6 +980,22 @@ section h2 {
 @media (min-width: 1024px) {
   .section-three-names {
     padding-inline: 40px;
+  }
+}
+
+.section-three-names h2 {
+  font-size: 24px;
+}
+
+@media (min-width: 768px) {
+  .section-three-names h2 {
+    font-size: 36px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-three-names h2 {
+    font-size: 52px;
   }
 }
 
