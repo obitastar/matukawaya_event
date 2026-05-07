@@ -1406,11 +1406,21 @@ section h2 {
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-gold) transparent;
 }
 
 .venue-gallery::-webkit-scrollbar {
-  display: none;
+  height: 6px;
+}
+
+.venue-gallery::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.venue-gallery::-webkit-scrollbar-thumb {
+  background: var(--color-gold);
+  border-radius: 3px;
 }
 
 .venue-gallery__track {
