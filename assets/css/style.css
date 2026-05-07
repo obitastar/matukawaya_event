@@ -93,7 +93,8 @@ img {
   .intro-body br,
   .split-layout__text p br,
   .venue-body p br,
-  .matukawaya-closing p br {
+  .matukawaya-closing p br,
+  br.br-pc {
     display: none;
   }
 }
